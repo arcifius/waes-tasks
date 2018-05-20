@@ -1,0 +1,12 @@
+# Node modules
+node_modules
+
+# Next compiled
+.next
+
+package-lock.json
+
+# bundle analysis
+bundles
+
+coverage

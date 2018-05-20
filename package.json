@@ -1,0 +1,56 @@
+{
+  "name": "waes-tasks",
+  "version": "0.0.1",
+  "description": "Web app that implements an alternative style for google tasks",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "test": "NODE_ENV=test jest --coverage",
+    "update-snapshots": "jest --updateSnapshot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arcifius/waes-tasks.git"
+  },
+  "keywords": [
+    "todo",
+    "restyle",
+    "waes",
+    "test",
+    "ux"
+  ],
+  "author": "Augusto Ferreira Russo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arcifius/waes-tasks/issues"
+  },
+  "homepage": "https://github.com/arcifius/waes-tasks#readme",
+  "dependencies": {
+    "@zeit/next-bundle-analyzer": "^0.1.1",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^22.4.3",
+    "mobx": "^4.2.1",
+    "mobx-react": "^5.1.2",
+    "mobx-state-tree": "^2.0.5",
+    "next": "^6.0.3",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "styled-jsx": "^2.2.6"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "jest": "^22.4.3",
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "^16.3.2"
+  }
+}

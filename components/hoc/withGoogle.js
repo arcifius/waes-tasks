@@ -3,23 +3,21 @@ import google from 'utils/google';
 import GoogleAuth from 'components/googleAuth';
 import Loading from 'components/loading';
 
-export default (WrappedComponent) => {
+export default (WrappedComponent, mockedGoogle = false, initialState = { authorized: false, googleIsReady: false }) => {
     return class extends Component {
         constructor(props) {
             super(props);
             this.state = {
-                authorized: false,
-                googleIsReady: false,
+                authorized: initialState.authorized,
+                googleIsReady: initialState.googleIsReady,
             };
+
+            this.google = !mockedGoogle ? google : mockedGoogle;
         }
 
         componentDidMount() {
             // Initialize google's client
-            google.initClient(this._configure);
-        }
-
-        componentWillUnmount() {
-            google._unlistenAuthorization();
+            this.google.initClient(this._configure);
         }
 
         /**
@@ -36,7 +34,7 @@ export default (WrappedComponent) => {
 
             // If is authorized ask for tasks api
             if (isAuthorized) {
-                google.loadApi(`tasks`, `v1`, () => {
+                this.google.loadApi(`tasks`, `v1`, () => {
                     // All initial google resources are ready to use
                     this.setState({
                         googleIsReady: true,
@@ -57,24 +55,27 @@ export default (WrappedComponent) => {
         }
 
         /**
-        * Unlisten changes of the authorization status
-        */
-        _unlistenAuthorization = () => {
-            google.gapi.auth2.getAuthInstance().isSignedIn.unlisten(this._updateAuthorization);
-        }
-
-        /**
          * Update authorization status with provided boolean
          */
-        _updateAuthorization = (authorized) => {
-            this.setState({ authorized });
+        _updateAuthorization = (isAuthorized) => {
+            if (isAuthorized) {
+                this.google.loadApi(`tasks`, `v1`, () => {
+                    // All initial google resources are ready to use
+                    this.setState({
+                        googleIsReady: true,
+                        authorized: isAuthorized,
+                    });
+                });
+            } else {
+                this.setState({ authorized: isAuthorized });
+            }
         }
 
         render() {
             if (this.state.googleIsReady) {
                 return this.state.authorized
-                    ? <WrappedComponent {...this.props} />
-                    : <GoogleAuth />;
+                    ? <WrappedComponent {...this.props} {...this.state} google={this.google} />
+                    : <GoogleAuth {...this.props} {...this.state} google={this.google} />;
             }
 
             return (

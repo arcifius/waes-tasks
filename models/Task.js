@@ -21,7 +21,6 @@ const Task = types.model({
     deleted: types.optional(types.boolean, false),
     hidden: types.optional(types.boolean, false),
     subTasks: types.maybe(types.array(types.late(() => Task))),
-
 });
 
 export default Task;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from 'styles/taskLists';
 import { inject, observer } from "mobx-react";
-import TaskListsItem from 'components/composition/taskListsItem';
+import TaskListsItem from 'components/composition/lists/taskListsItem';
 
 const TaskLists = observer((props) => {
     const renderItens = () => {
@@ -30,10 +30,11 @@ const TaskLists = observer((props) => {
 TaskLists.propTypes = {
     title: PropTypes.string,
     taskLists: PropTypes.object.isRequired,
+    google: PropTypes.object.isRequired,
 };
 
 TaskLists.defaultProps = {
     title: undefined,
 };
 
-export default inject(`taskLists`)(TaskLists);
+export default inject(`google`)(inject(`taskLists`)(TaskLists));

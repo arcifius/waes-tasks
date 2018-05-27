@@ -13,7 +13,6 @@
         "test": {
             "presets": [
                 [
-                    "latest",
                     "next/babel",
                     {
                         "preset-env": {

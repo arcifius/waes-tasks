@@ -1,6 +1,7 @@
 const withBundleAnalyzer = require(`@zeit/next-bundle-analyzer`);
+const withCSS = require(`@zeit/next-css`);
 
-module.exports = withBundleAnalyzer({
+module.exports = withCSS(withBundleAnalyzer({
     pageExtensions: [`jsx`, `js`],
     webpack: (config) => {
         config.resolve = {
@@ -20,4 +21,4 @@ module.exports = withBundleAnalyzer({
             reportFilename: `../bundles/client.html`,
         },
     },
-});
+}));

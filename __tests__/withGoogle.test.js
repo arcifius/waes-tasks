@@ -5,10 +5,15 @@ import React from 'react';
 
 // Components involved in this test
 import withGoogle from 'components/hoc/withGoogle';
-import mockedGoogle from 'utils/mockedGoogle';
 import TaskManager from 'pages/index';
 import GoogleAuth from 'components/googleAuth';
 import Loading from 'components/loading';
+
+// Google library
+import google from 'utils/google';
+
+// Mock Google library
+jest.mock(`utils/google`);
 
 describe(`withGoogle hoc`, () => {
     let mountedWrapper;
@@ -18,7 +23,7 @@ describe(`withGoogle hoc`, () => {
      */
     const wrapper = () => {
         if (!mountedWrapper) {
-            const GoogleCheckedComponent = withGoogle(TaskManager, mockedGoogle);
+            const GoogleCheckedComponent = withGoogle(TaskManager);
             mountedWrapper = mount(<GoogleCheckedComponent />);
         }
         return mountedWrapper;
@@ -28,7 +33,7 @@ describe(`withGoogle hoc`, () => {
      * Reset everything to perform a fair test
      */
     beforeEach(() => {
-        mockedGoogle.setSignedIn(false);
+        google.setSignedIn(false);
         mountedWrapper = undefined;
     });
 
@@ -51,7 +56,7 @@ describe(`withGoogle hoc`, () => {
     describe(`When google script is loaded`, () => {
         describe(`If the app is authorized`, () => {
             beforeEach(() => {
-                mockedGoogle.setSignedIn(true);
+                google.setSignedIn(true);
             });
 
             it(`should render the wrapped component passing google as prop`, () => {
@@ -64,7 +69,7 @@ describe(`withGoogle hoc`, () => {
 
         describe(`If the app isnt authorized`, () => {
             beforeEach(() => {
-                mockedGoogle.setSignedIn(false);
+                google.setSignedIn(false);
             });
 
             it(`should render a "GoogleAuth"`, () => {

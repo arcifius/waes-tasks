@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { inject } from 'mobx-react';
+import style from 'styles/appBar';
 
 const AppBar = (props) => {
     /**
@@ -11,9 +12,13 @@ const AppBar = (props) => {
     };
 
     return (
-        <div>
-            <p>app bar</p>
-            <button onClick={_signout}>sign out</button>
+        <div className="app-bar noselect">
+            <p>Task Manager</p>
+            <button onClick={_signout}>
+                <span>sign out</span>
+                <i className="fas fa-sign-out-alt" />
+            </button>
+            <style jsx>{style}</style>
         </div>
     );
 };

@@ -2,13 +2,18 @@
 
 import { mount } from 'enzyme';
 import React from 'react';
-import mockValues from 'utils/mockValues';
 
 // Components involved in this test
-import mockedGoogle from 'utils/mockedGoogle';
 import TaskLists from 'components/composition/taskLists';
 import TaskListsItem from 'components/composition/lists/taskListsItem';
+import Modal from 'react-modal';
 
+import mockValues from 'utils/mockValues';
+// Google library
+import google from 'utils/google';
+
+// Mock Google library
+jest.mock(`utils/google`);
 
 describe(`TaskLists`, () => {
     let mountedTaskLists;
@@ -31,7 +36,7 @@ describe(`TaskLists`, () => {
         mountedTaskLists = undefined;
         props = {
             title: undefined,
-            google: mockedGoogle,
+            google,
             taskLists: { items: [] },
         };
     });
@@ -67,7 +72,19 @@ describe(`TaskLists`, () => {
         });
 
         it(`renders a "TaskListsItem" for each element in the list`, () => {
+            const newListButton = taskLists().find(`#newListButton`);
+            expect(newListButton).toBeDefined();
+            newListButton.simulate(`click`);
             expect(taskLists().find(TaskListsItem).length).toBe(taskLists().props().taskLists.items.length);
+        });
+    });
+
+    describe(`When "#newListButton" is pressed`, () => {
+        it(`opens a modal`, () => {
+            const newListButton = taskLists().find(`#newListButton`);
+            expect(newListButton).toBeDefined();
+            newListButton.simulate(`click`);
+            expect(taskLists().find(Modal).first().props().isOpen).toBe(true);
         });
     });
 });

@@ -7,17 +7,19 @@ import TaskListsViewerItem from 'components/composition/lists/taskListsViewerIte
 const TaskListsViewer = observer((props) => {
     const renderLists = () => {
         return props.taskLists.items.map((list) => {
-            return (
-                <TaskListsViewerItem key={list.id} list={list} />
-            );
+            if (list.active) {
+                return (
+                    <TaskListsViewerItem key={list.id} list={list} />
+                );
+            }
         });
     };
 
     return (
-        <div className={`taskListsViewer`}>
+        <ul className={`taskListsViewer`}>
             {renderLists()}
             <style jsx>{style}</style>
-        </div>
+        </ul>
     );
 });
 

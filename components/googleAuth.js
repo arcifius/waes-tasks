@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import style from 'styles/googleAuth';
 
 
 export default class GoogleAuth extends Component {
@@ -17,9 +18,18 @@ export default class GoogleAuth extends Component {
     render() {
         return (
             <div className="google-auth">
-                <button onClick={this._handleAuthorization}>
-                    Authorize waes task
-                </button>
+                <div className="box">
+                    <h1>Welcome to Task Manager</h1>
+                    <span className="sub-message">We need your authorization to start</span>
+
+                    <div className="content">
+                        <button className="authorize" onClick={this._handleAuthorization}>
+                            <i className="fab fa-google" />
+                            <span>Authorize Task Manager</span>
+                        </button>
+                    </div>
+                </div>
+                <style global jsx>{style}</style>
             </div>
         );
     }

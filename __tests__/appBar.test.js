@@ -4,8 +4,13 @@ import { mount } from 'enzyme';
 import React from 'react';
 
 // Components involved in this test
-import mockedGoogle from 'utils/mockedGoogle';
 import AppBar from 'components/composition/appBar';
+
+// Google library
+import google from 'utils/google';
+
+// Mock Google library
+jest.mock(`utils/google`);
 
 describe(`AppBar`, () => {
     let mountedAppBar;
@@ -15,7 +20,7 @@ describe(`AppBar`, () => {
      */
     const appBar = () => {
         if (!mountedAppBar) {
-            mountedAppBar = mount(<AppBar google={mockedGoogle} />);
+            mountedAppBar = mount(<AppBar google={google} />);
         }
         return mountedAppBar;
     };
@@ -24,7 +29,7 @@ describe(`AppBar`, () => {
      * Reset everything to perform a fair test
      */
     beforeEach(() => {
-        mockedGoogle.setSignedIn(true);
+        google.setSignedIn(true);
         mountedAppBar = undefined;
     });
 

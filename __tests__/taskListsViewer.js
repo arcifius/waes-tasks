@@ -5,10 +5,14 @@ import React from 'react';
 import mockValues from 'utils/mockValues';
 
 // Components involved in this test
-import mockedGoogle from 'utils/mockedGoogle';
 import TaskListsViewer from 'components/composition/taskListsViewer';
 import TaskListsViewerItem from 'components/composition/lists/taskListsViewerItem';
 
+// Google library
+import google from 'utils/google';
+
+// Mock Google library
+jest.mock(`utils/google`);
 
 describe(`TaskListsViewer`, () => {
     let mountedTaskListsViewer;
@@ -30,7 +34,7 @@ describe(`TaskListsViewer`, () => {
     beforeEach(() => {
         mountedTaskListsViewer = undefined;
         props = {
-            google: mockedGoogle,
+            google,
             taskLists: { items: [] },
         };
     });

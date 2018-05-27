@@ -23,4 +23,7 @@ export default {
             ],
         });
     },
+    event: (extra = {}) => {
+        return { preventDefault: () => { }, ...extra };
+    },
 };

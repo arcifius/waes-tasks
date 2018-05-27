@@ -29,15 +29,19 @@
   "homepage": "https://github.com/arcifius/waes-tasks#readme",
   "dependencies": {
     "@zeit/next-bundle-analyzer": "^0.1.1",
+    "@zeit/next-css": "^0.2.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^22.4.3",
+    "date-fns": "^1.29.0",
     "mobx": "^4.2.1",
     "mobx-react": "^5.1.2",
     "mobx-state-tree": "^2.0.5",
     "next": "^6.0.3",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
+    "react-day-picker": "^7.1.9",
     "react-dom": "^16.3.2",
+    "react-modal": "^3.4.4",
     "styled-jsx": "^2.2.6"
   },
   "devDependencies": {

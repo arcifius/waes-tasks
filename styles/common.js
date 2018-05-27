@@ -11,6 +11,23 @@ export const reset = css`
         font: inherit;
         vertical-align: baseline;
     }
+
+    button {
+        background-color: white;
+        border: 0px;
+        padding: 3px;
+        cursor: pointer;
+
+        -webkit-transition: all 0.3s linear;
+        -moz-transition: all 0.3s linear;
+        -ms-transition: all 0.3s linear;
+        -o-transition: all 0.3s linear;
+        transition: all 0.3s linear;
+    }
+
+    button::-moz-focus-inner {
+        border: 0;
+    }
 `;
 
 export default {

@@ -4,8 +4,13 @@ import { mount } from 'enzyme';
 import React from 'react';
 
 // Components involved in this test
-import mockedGoogle from 'utils/mockedGoogle';
 import GoogleAuth from 'components/googleAuth';
+
+// Google library
+import google from 'utils/google';
+
+// Mock Google library
+jest.mock(`utils/google`);
 
 describe(`GoogleAuth`, () => {
     let mountedGoogleAuth;
@@ -15,7 +20,7 @@ describe(`GoogleAuth`, () => {
      */
     const googleAuth = () => {
         if (!mountedGoogleAuth) {
-            mountedGoogleAuth = mount(<GoogleAuth google={mockedGoogle} />);
+            mountedGoogleAuth = mount(<GoogleAuth google={google} />);
         }
         return mountedGoogleAuth;
     };

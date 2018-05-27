@@ -4,11 +4,16 @@ import { mount } from 'enzyme';
 import React from 'react';
 
 // Components involved in this test
-import mockedGoogle from 'utils/mockedGoogle';
 import TaskManager from 'components/taskManager';
 import TaskLists from 'components/composition/taskLists';
 import TaskListsViewer from 'components/composition/taskListsViewer';
 import AppBar from 'components/composition/appBar';
+
+// Google library
+import google from 'utils/google';
+
+// Mock Google library
+jest.mock(`utils/google`);
 
 describe(`TaskManager`, () => {
     let mountedTaskManager;
@@ -18,7 +23,7 @@ describe(`TaskManager`, () => {
      */
     const wrapper = () => {
         if (!mountedTaskManager) {
-            mountedTaskManager = mount(<TaskManager google={mockedGoogle} />);
+            mountedTaskManager = mount(<TaskManager google={google} />);
         }
         return mountedTaskManager;
     };

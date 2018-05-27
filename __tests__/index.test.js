@@ -4,8 +4,12 @@ import { mount } from 'enzyme';
 import React from 'react';
 
 // Components involved in this test
-import mockedGoogle from 'utils/mockedGoogle';
 import Index from 'pages/index';
+
+// Google library
+import google from 'utils/google';
+
+jest.mock(`utils/google`);
 
 describe(`Index`, () => {
     let mountedIndex;
@@ -15,7 +19,7 @@ describe(`Index`, () => {
      */
     const wrapper = () => {
         if (!mountedIndex) {
-            mountedIndex = mount(<Index google={mockedGoogle} />);
+            mountedIndex = mount(<Index />);
         }
         return mountedIndex;
     };
@@ -24,7 +28,7 @@ describe(`Index`, () => {
      * Reset everything to perform a fair test
      */
     beforeEach(() => {
-        mockedGoogle.setSignedIn(true);
+        google.setSignedIn(true);
         mountedIndex = undefined;
     });
 

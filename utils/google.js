@@ -2,8 +2,8 @@
 const GOOGLE_SCRIPT = `https://apis.google.com/js/api.js`;
 
 // We could make this more dynamic if needed
-const API_KEY = ``;
-const CLIENT_ID = ``;
+const API_KEY = `AIzaSyDHAdePQ9vLkq6H8jTeCwMue2d3kr6CQ-o`;
+const CLIENT_ID = `322131878986-pj57jc6lcepai5jq65crhcbmk3g0ne95.apps.googleusercontent.com`;
 const SCOPES = `https://www.googleapis.com/auth/tasks`;
 
 

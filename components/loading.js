@@ -1,9 +1,11 @@
 import React from 'react';
+import style from 'styles/loading';
 
 const Loading = () => {
     return (
-        <div>
-            <span> Loading </span>
+        <div className="loading">
+            <span> Preparing everything for you </span>
+            <style jsx>{style}</style>
         </div>
     );
 };

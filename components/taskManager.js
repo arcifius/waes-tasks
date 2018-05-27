@@ -31,9 +31,11 @@ export default class TaskManager extends Component {
             <Provider taskLists={taskListsStore} google={this.props.google}>
                 <div className="taskManager">
                     <AppBar />
-                    <TaskLists title="Task lists" />
-                    <TaskListsViewer />
-                    <style jsx>{style}</style>
+                    <div className="flex-row">
+                        <TaskLists title="Task lists" />
+                        <TaskListsViewer />
+                    </div>
+                    <style global jsx>{style}</style>
                 </div>
             </Provider>
         );

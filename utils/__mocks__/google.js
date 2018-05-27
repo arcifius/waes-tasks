@@ -11,6 +11,15 @@ class MockedGoogle {
                 list: async () => {
                     return { result: { items: [] } };
                 },
+                insert: async (list) => {
+                    return { result: list };
+                },
+                delete: async () => {
+                    return {};
+                },
+                update: async (objectWithID, list) => {
+                    return { list };
+                },
             },
         };
 
@@ -22,8 +31,8 @@ class MockedGoogle {
             auth2: {
                 getAuthInstance: () => {
                     return {
-                        signIn: () => {},
-                        signOut: () => {},
+                        signIn: () => { },
+                        signOut: () => { },
                         isSignedIn: {
                             get: () => {
                                 return this.signedIn;
